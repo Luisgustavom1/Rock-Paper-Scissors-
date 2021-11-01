@@ -14,8 +14,10 @@ export const GlobalStyle = createGlobalStyle`
     body {
         width: 100vw;
         height: 100vh;
+        
         background:  no-repeat center / 100% radial-gradient(#1f3756, #141539);
-        overflow-x: hidden;
+        
+        overflow: hidden;
     }
 
     input, button, text-area {
