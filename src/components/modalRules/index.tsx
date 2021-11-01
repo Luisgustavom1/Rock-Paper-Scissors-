@@ -1,12 +1,10 @@
-import React from 'react';
-
+import { useContext } from 'react';
+import GameContext from '../../context/gameContext';
 import { Container, Content, NewDarkText } from './styles';
 
-interface ModalRulesProps {
-  setShowModal: (value: boolean) => void;
-}
+const ModalRules = () => {
+  const { setShowModal } = useContext(GameContext)
 
-const ModalRules = ({ setShowModal }: ModalRulesProps) => {
   return( 
     <Container>
         <Content>

@@ -14,6 +14,7 @@ export const Container = styled.div<ContainerProps>`
     
     display: grid;
     place-items: center;
+
     div {
         border-radius: 50%;
         background: white;
@@ -23,5 +24,9 @@ export const Container = styled.div<ContainerProps>`
         
         display: grid;
         place-items: center;
+    }
+
+    &:hover {
+        opacity: .9;
     }
 `;
