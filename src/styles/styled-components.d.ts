@@ -7,9 +7,9 @@ declare module 'styled-components' {
         cyan: string,
         headerOutline: string,
         actions: {
-            scissorsGradient: string,
-            paperGradient: string,
-            rockGradient: string,
+            ScissorsGradient: string,
+            PaperGradient: string,
+            RockGradient: string,
         },
         text: {
             darkText: string,
