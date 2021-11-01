@@ -1,25 +1,26 @@
 import React from 'react';
+import { DarkText, H1, ScoreText } from '../../styles/typograph';
 
-import { Container } from './styles';
+import { Actions, Container, ScoreContainer } from './styles';
 
 const Header: React.FC = () => {
   return(
     <Container>
-        <ul>
-            <li>
+        <Actions>
+            <H1>
                 Rock
-            </li>
-            <li>
+            </H1>
+            <H1>
                 Paper
-            </li>
-            <li>
+            </H1>
+            <H1>
                 Scissors
-            </li>
-        </ul>  
-        <div>
-            <p>Score</p>
-            <h1>12</h1>    
-        </div> 
+            </H1>
+        </Actions>  
+        <ScoreContainer>
+            <ScoreText>SCORE</ScoreText>
+            <DarkText>12</DarkText> 
+        </ScoreContainer>   
     </Container>
   );
 }
