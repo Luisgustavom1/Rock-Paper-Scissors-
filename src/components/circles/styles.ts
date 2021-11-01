@@ -6,9 +6,12 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
     background: ${({ theme, action }) => `linear-gradient(${theme.actions[`${action}Gradient`]})`};
+
     width: 150px;
     height: 150px;
+
     border-radius: 50%;
+    
     display: grid;
     place-items: center;
     div {
@@ -22,4 +25,3 @@ export const Container = styled.div<ContainerProps>`
         place-items: center;
     }
 `;
-// [`${action}Gradient`]

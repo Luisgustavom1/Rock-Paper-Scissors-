@@ -8,7 +8,7 @@ export const Container = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  margin: 40px auto 0 auto;
+  margin: 60px auto;
 
   padding: 10px 15px;
 
