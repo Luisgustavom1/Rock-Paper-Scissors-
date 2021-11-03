@@ -9,9 +9,9 @@ const Actions: React.FC = () => {
   return(
     <Container>
       <img src={triangle} alt="triangulo de background" />
-      <Circle action='Paper' />
-      <Circle action='Rock' />
-      <Circle action='Scissors' />
+      <Circle large={false} action='Paper' />
+      <Circle large={false} action='Rock' />
+      <Circle large={false} action='Scissors' />
     </Container>
   )
 }

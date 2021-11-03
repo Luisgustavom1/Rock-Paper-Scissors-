@@ -1,12 +1,20 @@
+import { useHistory } from 'react-router';
 import { Container } from './styles';
 
 interface CircleProps {
-  action: 'Paper' | 'Rock' |'Scissors'
+  action: 'Paper' | 'Rock' |'Scissors',
+  large: boolean
 }
 
-const Circle = ({ action }: CircleProps) => {
+const Circle = ({ action, large }: CircleProps) => {
+  const history = useHistory()
+
   return(
-    <Container action={action}>
+    <Container 
+      large={large}
+      action={action} 
+      onClick={() => history.push('/playing')}
+    >
       <div>
       {
         action === 'Paper' 

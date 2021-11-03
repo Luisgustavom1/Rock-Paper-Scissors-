@@ -3,9 +3,7 @@ import Play from '../components/play';
 
 const Game: React.FC = () => {
   return (
-    <Play>
-      
-    </Play>
+    <Play />
   );
 }
 

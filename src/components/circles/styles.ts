@@ -1,32 +1,35 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface ContainerProps {
-    action: 'Paper' | 'Rock' |'Scissors'
+    action: 'Paper' | 'Rock' |'Scissors';
+    large: boolean
 }
 
 export const Container = styled.div<ContainerProps>`
-    background: ${({ theme, action }) => `linear-gradient(${theme.actions[`${action}Gradient`]})`};
+    ${({ action, large, theme }) => css`
+        background: ${`linear-gradient(${theme.actions[`${action}Gradient`]})`};
 
-    width: 150px;
-    height: 150px;
+        width: ${large ? '220px' : '150px'};
+        height: ${large ? '220px' : '150px'};
 
-    border-radius: 50%;
-    
-    display: grid;
-    place-items: center;
-
-    div {
         border-radius: 50%;
-        background: white;
-        
-        width: 120px;
-        height: 120px;
-        
+
         display: grid;
         place-items: center;
-    }
 
-    &:hover {
-        opacity: .9;
-    }
+        div {
+            border-radius: 50%;
+            background: white;
+            
+            width: ${large ? '170px' : '120px'};
+            height: ${large ? '170px' : '120px'};
+            
+            display: grid;
+            place-items: center;
+        }
+        
+        &:hover {
+            opacity: .9;
+        }
+    `}
 `;
