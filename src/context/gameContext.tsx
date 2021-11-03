@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useState } from "react";
 
 interface GameContextData {
-    isPlaying: boolean;
-    setIsPlaying: (value: boolean) => void;
+    yourAction: any;
+    setYourAction: (value: 'Paper' | 'Rock' |'Scissors') => void;
     showModal: boolean;
     setShowModal: (value: boolean) => void;
 }
@@ -15,10 +15,10 @@ const GameContext = createContext({} as GameContextData)
 
 export function GameProvider({ children }: GameProviderProps) {
     const [showModal, setShowModal] = useState(true);
-    const [isPlaying, setIsPlaying] = useState(true);
+    const [yourAction, setYourAction] = useState('Scissors');
     
     return (
-        <GameContext.Provider value={{ showModal, setShowModal, isPlaying, setIsPlaying }}>
+        <GameContext.Provider value={{ showModal, setShowModal, yourAction, setYourAction }}>
             {children}
         </GameContext.Provider>
     )

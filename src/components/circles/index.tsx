@@ -1,4 +1,8 @@
+import { useContext } from 'react';
 import { useHistory } from 'react-router';
+
+import GameContext from '../../context/gameContext';
+
 import { Container } from './styles';
 
 interface CircleProps {
@@ -7,13 +11,17 @@ interface CircleProps {
 }
 
 const Circle = ({ action, large }: CircleProps) => {
+  const { setYourAction } = useContext(GameContext)
   const history = useHistory()
 
   return(
     <Container 
       large={large}
       action={action} 
-      onClick={() => history.push('/playing')}
+      onClick={() => {
+        history.push('/playing')
+        setYourAction(action)
+      }}
     >
       <div>
       {
