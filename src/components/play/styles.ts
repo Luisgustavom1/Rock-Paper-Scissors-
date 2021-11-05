@@ -4,8 +4,9 @@ import { H1 } from '../../styles/typograph';
 
 export const Container = styled.main`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   text-align: center;
+  gap: 70px;
 
   width: 50vw;
 

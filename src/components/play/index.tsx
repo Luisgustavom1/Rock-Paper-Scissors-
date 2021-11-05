@@ -1,62 +1,63 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 
 import GameContext from '../../context/gameContext';
 import Circle from '../circles';
 
 import { Button, Container, ContainerResult, NewH1 } from './styles';
-const Play: React.FC = () => {
+
+const Play = () => {
+  const history = useHistory();
   const { yourAction } = useContext(GameContext)
 
   const [isPlaying, setIsPlaying] = useState(true);
-  const [housePicked, setHousePicked] = useState<any>();
+  const [housePicked, setHousePicked] = useState<'Rock' | 'Paper' | 'Scissors'>('Rock');
   const [winner, setWinner] = useState<'player' | 'house' | 'draw'>()
 
-  const possibleActions: any = ['Rock', 'Paper', 'Scissors'];
+  const possibleActions = ['Rock', 'Paper', 'Scissors'];
 
   let count = 0;
 
   const getHousePicked = () => {
-    if (count >= 10) {
-      setIsPlaying(false)   
-      verifyWinner()   
-    } 
-
     const possibleActionsLength = possibleActions.length;
+    const newHousePicked = Math.floor(Math.random() * (0 + ( possibleActionsLength - 1 ) + 1));
 
-    setHousePicked(Math.floor(Math.random() * (0 + ( possibleActionsLength - 1 ) + 1)) + 0)
-    console.log(housePicked);
+    setHousePicked(() => possibleActions[newHousePicked] as 'Rock' | 'Paper' | 'Scissors')
     
     count++
+
+    if (count >= 10) {
+      setIsPlaying(false) 
+      return
+    } 
   }
 
-  const verifyWinner = () => {
-    console.log('yourAction', yourAction);
-    console.log('winner', housePicked);
-    
-    
-    if(housePicked) {
-      console.log('possibleActions', possibleActions[housePicked]);
-      if (possibleActions[housePicked] === 'Rock' && yourAction === 'Scissors') {
-        return setWinner('house')
-      } 
-      if (possibleActions[housePicked] === 'Scissors' && yourAction === 'Rock') {
-        return setWinner('player')
-      }
-      if (possibleActions[housePicked] === 'Paper' && yourAction === 'Rock') {
-        return setWinner('house')
-      } 
-      if (possibleActions[housePicked] === 'Rock' && yourAction === 'Paper') {
-        return setWinner('player')
-      }
-      if (possibleActions[housePicked] === 'Scissors' && yourAction === 'Paper') {
-        return setWinner('house')
-      } 
-      if (possibleActions[housePicked] === 'Paper' && yourAction === 'Scissors') {
-        return setWinner('player')
-      }
+  const verifyWinner = () => { 
+    if (housePicked === 'Rock' && yourAction === 'Scissors') {
+      return setWinner('house')
+    } 
+    if (housePicked === 'Scissors' && yourAction === 'Rock') {
+       return setWinner('player')
+    }
+    if (housePicked === 'Paper' && yourAction === 'Rock') {
+      return setWinner('house')     
+
+    } 
+    if (housePicked === 'Rock' && yourAction === 'Paper') {
+      return setWinner('player')
+    }
+    if (housePicked === 'Rock' && yourAction === 'Scissors') {
+      return setWinner('player')
+    }
+    if (housePicked === 'Scissors' && yourAction === 'Paper') {
+      return setWinner('house')      
+
+    } 
+    if (housePicked === 'Paper' && yourAction === 'Scissors') {
+      return setWinner('player'); 
     }
 
-    setWinner('draw')
+    return setWinner('draw')    
   }
 
   useEffect(() => {
@@ -66,6 +67,8 @@ const Play: React.FC = () => {
       }, 200);
       return () => clearInterval(interval)
     }
+    verifyWinner()  
+
   }, [isPlaying])
 
   return (
@@ -77,7 +80,7 @@ const Play: React.FC = () => {
           large
         />
       </div>
-      {!isPlaying && (
+      {!isPlaying && winner && (
         <ContainerResult>
           <h1>{
             winner === 'player'
@@ -88,7 +91,7 @@ const Play: React.FC = () => {
                 : 'DRAW'
               )
           }</h1>
-          <Button>
+          <Button onClick={() => history.push({ pathname: '/' })}>
             Play again
           </Button>
         </ContainerResult>
@@ -96,7 +99,7 @@ const Play: React.FC = () => {
       <div>
       <NewH1>The House Picked</NewH1>
         <Circle 
-          action={possibleActions[housePicked] as 'Rock' | 'Paper' | 'Scissors'}
+          action={housePicked}
           large
         />
       </div>
